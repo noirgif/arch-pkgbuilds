@@ -1,0 +1,1 @@
+Visual Studio code insiders version, with `libffmpeg.so` replaced with that in `community/opera-ffmpeg-codecs`. 

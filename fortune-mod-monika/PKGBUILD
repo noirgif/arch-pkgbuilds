@@ -1,0 +1,26 @@
+# Maintainer: Ruohui Wang <nomaru@outlook.com>
+pkgname=fortune-mod-monika
+pkgver=0.1
+pkgrel=1
+pkgdesc="DDLC Monika's talk fortune cookie file"
+arch=(any)
+url="https://ddlc.moe"
+license=('custom')
+depends=(fortune-mod)
+groups=('fortune-mods')
+makedepends=(fortune-mod)
+source=(https://raw.githubusercontent.com/Monika-After-Story/MonikaModDev/master/original_scripts/111/script-ch30.rpy)
+md5sums=('67a0ddbf43d933958b74d5bf5c99ca39')
+
+build() {
+  cd "$srcdir"
+
+  sed -E "0,/ch30_1/d;/\W*return\W*/d;/label ch30_[0-9]+:/d;s/\W*m \"(.*)\"\W*/\1/;s/\{i}(.*)\{\/i}/\1/;s/^$/%/;s/\[player]/$USER/" script-ch30.rpy > monika
+  strfile monika
+}
+
+package() {
+  mkdir -p $pkgdir/usr/share/fortune/
+  install -D -m644 monika $pkgdir/usr/share/fortune/
+  install -D -m644 monika.dat $pkgdir/usr/share/fortune/
+}
