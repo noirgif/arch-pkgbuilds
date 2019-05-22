@@ -21,6 +21,12 @@ sha256sums_x86_64=('SKIP'
 sha256sums_i686=('SKIP'
                  '84a4e1713baee49727c3bde36cccb69e79eeb8e66849f161ed0edb7e65a089f9'
                  'd87b1f9f6187fe2d401424f109a7254d6f185f9ff433a4e6d60feed6e5ace6f8')
+
+_pkg=VSCode-linux-x64
+if [ "${CARCH}" = "i686" ]; then
+  _pkg=VSCode-linux-ia32
+fi
+
 pkgver() {
     if [ "${CARCH}" = "x86_64" ]; then
         IFS='/' read -ra ADDR <<< $(curl -ILs -o /dev/null -w %{url_effective} https://vscode-update.azurewebsites.net/latest/linux-x64/insider); echo "${ADDR[5]}" | sed 's/code-insider-//g' | sed 's/.tar.gz//g' | sed 's/-/./g'
@@ -31,17 +37,11 @@ pkgver() {
 
 build() {
   # replace ffmpeg lib
-  cd "${srcdir}/${_pkg}/"
   curl $(pacman -Sp opera-ffmpeg-codecs) | tar xJ
-  mv usr/lib/opera/lib_extra/libffmpeg.so .
+  mv usr/lib/opera/lib_extra/libffmpeg.so "${srcdir}/${_pkg}/"
 }
 
 package() {
-  _pkg=VSCode-linux-x64
-  if [ "${CARCH}" = "i686" ]; then
-    _pkg=VSCode-linux-ia32
-  fi
-
   install -d "${pkgdir}/usr/share/licenses/${pkgname}"
   install -d "${pkgdir}/opt/${pkgname}"
   install -d "${pkgdir}/usr/bin"
