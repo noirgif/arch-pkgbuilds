@@ -9,7 +9,7 @@ license=('custom')
 depends=(fortune-mod)
 groups=('fortune-mods')
 makedepends=(fortune-mod)
-source=(https://raw.githubusercontent.com/Monika-After-Story/MonikaModDev/inactivity/original_scripts/111/script-ch30.rpy)
+source=(https://raw.githubusercontent.com/Monika-After-Story/MonikaModDev/a4ef61dba9c4ea54f9c6a93445cddc1d874fb7b6/original_scripts/111/script-ch30.rpy)
 md5sums=('67a0ddbf43d933958b74d5bf5c99ca39')
 
 build() {
