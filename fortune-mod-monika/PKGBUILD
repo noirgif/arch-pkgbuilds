@@ -1,7 +1,7 @@
 # Maintainer: Ruohui Wang <nomaru@outlook.com>
 pkgname=fortune-mod-monika
 pkgver=0.1
-pkgrel=1
+pkgrel=2
 pkgdesc="DDLC Monika's talk fortune cookie file"
 arch=(any)
 url="https://ddlc.moe"
@@ -9,7 +9,7 @@ license=('custom')
 depends=(fortune-mod)
 groups=('fortune-mods')
 makedepends=(fortune-mod)
-source=(https://raw.githubusercontent.com/Monika-After-Story/MonikaModDev/master/original_scripts/111/script-ch30.rpy)
+source=(https://raw.githubusercontent.com/Monika-After-Story/MonikaModDev/inactivity/original_scripts/111/script-ch30.rpy)
 md5sums=('67a0ddbf43d933958b74d5bf5c99ca39')
 
 build() {
